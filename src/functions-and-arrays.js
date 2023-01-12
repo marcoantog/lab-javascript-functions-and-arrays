@@ -52,7 +52,24 @@ function sumNumbers(arr) {
 }
 
 // Iteration #3.1 Bonus:
-function sum() {}
+function sum(arr) {
+  if (arr.length === 0) {
+    return 0;
+  } else if (arr.length === 1) {
+    return arr[0];
+  }
+  let sum = 0;
+  for (i = 0; i < arr.length; i++) {
+    if (arr[i].length === undefined) {
+      sum += arr[i];
+    } else if (arr[i].length >= 1) {
+      sum += arr[i].length;
+    } else if (arr[i].length === 0) {
+      throw new Error("Unsupported data type sir or ma'am");
+    }
+  }
+  return sum;
+}
 
 // Iteration #4: Calculate the average
 // Level 1: Array of numbers
@@ -99,7 +116,22 @@ function averageWordLength(arr) {
 }
 
 // Bonus - Iteration #4.1
-function avg() {}
+function avg(arr) {
+  if (arr.length === 0) {
+    return null;
+  } else if (arr.length === 1) {
+    return arr[0].length;
+  }
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].length === undefined) {
+      sum += arr[i];
+    } else if (arr[i].length >= 1) {
+      sum += arr[i].length;
+    }
+  }
+  return sum / arr.length;
+}
 
 // Iteration #5: Unique arrays
 const wordsUnique = [
@@ -245,7 +277,41 @@ const matrix = [
   ],
 ];
 
-function greatestProduct() {}
+function greatestProduct(arr) {
+  let max = 0;
+  let result = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length; j++) {
+      if (j - 3 >= 0) {
+        result = arr[i][j] * arr[i][j - 1] * arr[i][j - 2] * arr[i][j - 3];
+        if (max < result) max = result;
+      }
+
+      if (i - 3 >= 0) {
+        result = arr[i][j] * arr[i - 1][j] * arr[i - 2][j] * arr[i - 3][j];
+
+        if (max < result) max = result;
+      }
+
+      if (i - 3 >= 0 && j - 3 >= 0) {
+        result =
+          arr[i][j] * arr[i - 1][j - 1] * arr[i - 2][j - 2] * arr[i - 3][j - 3];
+
+        if (max < result) max = result;
+      }
+
+      if (i - 3 >= 0 && j - 3 <= 0) {
+        result =
+          arr[i][j] * arr[i - 1][j + 1] * arr[i - 2][j + 2] * arr[i - 3][j + 3];
+
+        if (max < result) max = result;
+      }
+    }
+  }
+
+  return max;
+}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
